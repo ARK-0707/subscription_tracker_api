@@ -2,7 +2,6 @@ import express from "express";
 import cookieParser from 'cookie-parser';
 
 import { PORT } from "./config/env.js";
-
 import userRouter from "./routes/user.routes.js";
 import authRouter from "./routes/auth.routes.js";
 import subscriptionRouter from "./routes/subscription.routes.js";
@@ -29,10 +28,8 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Subscription Tracker API!');
 });
 
-app.listen(PORT, async () => {
-    console.log(`Subscription Tracker API is running on http://localhost:${PORT}`);
+// Connect to MongoDB
+await connectToDatabase();
 
-    await connectToDatabase();
-});
-
+// Export as a Vercel function
 export default app;
